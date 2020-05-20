@@ -2,5 +2,7 @@ package es.ulpgc.eite.da.orderingitems.app;
 
 public class ListToDetailState {
 
-  //TODO: falta implementacion
+    public Integer dataIndex;
+    public String letra;
+    public Integer listSize;
 }
