@@ -69,8 +69,26 @@ public class ItemListPresenter implements ItemListContract.Presenter {
   @Override
   public void onButtonTapped() {
     // Log.e(TAG, "onButtonTapped()");
+    if(state.letra.equals("A")){
+      state.letra = "B";
+    } else if(state.letra.equals("B")){
+      state.letra = "C";
+    }else if(state.letra.equals("C")){
+      state.letra = "D";
+    }else if(state.letra.equals("D")){
+      state.letra = "E";
+    }else if(state.letra.equals("E")){
+      state.letra = "F";
+    }else if(state.letra.equals("F")){
+      state.letra = "G";
+    } else{
+      state.letra = "A";
+    }
 
-    //TODO: falta implementacion
+    ItemData itemData = new ItemData( state.letra , state.listSize+1);
+    state.dataSource.add(itemData);
+    state.listSize ++ ;
+    view.get().onDataUpdated(state);
   }
 
   @Override

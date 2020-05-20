@@ -1,8 +1,9 @@
 package es.ulpgc.eite.da.orderingitems.app;
 
+import es.ulpgc.eite.da.orderingitems.data.ItemData;
+
 public class ListToDetailState {
 
-    public Integer dataIndex;
-    public String letra;
+    public ItemData letra;
     public Integer listSize;
 }
