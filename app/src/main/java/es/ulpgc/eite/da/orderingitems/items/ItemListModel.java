@@ -17,6 +17,8 @@ public class ItemListModel implements ItemListContract.Model {
 
   private List<ItemData> dataSource;
   private Integer dataIndex;
+  private ItemData itemData;
+  private Integer clicks;
 
   public ItemListModel() {
     dataIndex = 0;
@@ -45,15 +47,18 @@ public class ItemListModel implements ItemListContract.Model {
 
   @Override
   public void onAddNewData() {
-    //TODO: falta implementacion
+    ItemData itemData = new ItemData( letters[dataIndex] , dataIndex+1);
+    dataIndex = dataIndex+1;
+    dataSource.add(itemData);
+
   }
 
 
   @Override
   public void onDataFromNextScreen(ItemData data, Integer clicks) {
     // Log.e(TAG, "onDataFromNextScreen()");
-
-    //TODO: falta implementacion
+    this.itemData = data;
+    this.clicks = clicks;
 
   }
 

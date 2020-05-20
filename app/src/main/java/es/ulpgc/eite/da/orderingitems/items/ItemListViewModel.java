@@ -8,5 +8,5 @@ import es.ulpgc.eite.da.orderingitems.data.ItemData;
 public class ItemListViewModel {
 
   // put the view state here
-  public List<ItemData> dataSource = new ArrayList<>();
+  public List<ItemData> dataSource;
 }

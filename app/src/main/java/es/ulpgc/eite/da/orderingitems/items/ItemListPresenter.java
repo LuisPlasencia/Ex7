@@ -2,6 +2,8 @@ package es.ulpgc.eite.da.orderingitems.items;
 
 import java.lang.ref.WeakReference;
 
+import es.ulpgc.eite.da.orderingitems.app.DetailToListState;
+import es.ulpgc.eite.da.orderingitems.app.ListToDetailState;
 import es.ulpgc.eite.da.orderingitems.data.ItemData;
 
 public class ItemListPresenter implements ItemListContract.Presenter {
@@ -27,20 +29,28 @@ public class ItemListPresenter implements ItemListContract.Presenter {
     }
 
     //TODO: falta implementacion
+
   }
 
   @Override
   public void onRestart() {
     // Log.e(TAG, "onRestart()");
-
-    //TODO: falta implementacion
+    model.onRestartScreen(state.dataSource, state.dataIndex);
   }
 
   @Override
   public void onResume() {
     // Log.e(TAG, "onResume()");
+    DetailToListState detailToListState = router.getStateFromNextScreen();
+    if(detailToListState !=null){
+      model.onDataFromNextScreen(detailToListState.letra, detailToListState.numOfClicks );
+    }
 
-    //TODO: falta implementacion
+    state.dataIndex = model.getStoredIndex();
+    state.dataSource = model.getStoredDataSource();
+
+
+    view.get().onDataUpdated(state);
 
   }
 
@@ -62,32 +72,19 @@ public class ItemListPresenter implements ItemListContract.Presenter {
   @Override
   public void onListTapped(ItemData data) {
     // Log.e(TAG, "onListTapped()");
-
-    //TODO: falta implementacion
+    ListToDetailState listToDetailState = new ListToDetailState();
+    listToDetailState.letra = data;
+    listToDetailState.listSize = state.dataIndex;
+    router.passStateToNextScreen(listToDetailState);
+    view.get().navigateToNextScreen();
   }
 
   @Override
   public void onButtonTapped() {
     // Log.e(TAG, "onButtonTapped()");
-    if(state.letra.equals("A")){
-      state.letra = "B";
-    } else if(state.letra.equals("B")){
-      state.letra = "C";
-    }else if(state.letra.equals("C")){
-      state.letra = "D";
-    }else if(state.letra.equals("D")){
-      state.letra = "E";
-    }else if(state.letra.equals("E")){
-      state.letra = "F";
-    }else if(state.letra.equals("F")){
-      state.letra = "G";
-    } else{
-      state.letra = "A";
-    }
-
-    ItemData itemData = new ItemData( state.letra , state.listSize+1);
-    state.dataSource.add(itemData);
-    state.listSize ++ ;
+    model.onAddNewData();
+    state.dataSource = model.getStoredDataSource();
+    state.dataIndex++;
     view.get().onDataUpdated(state);
   }
 
