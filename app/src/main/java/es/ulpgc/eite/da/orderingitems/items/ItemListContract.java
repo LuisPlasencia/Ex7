@@ -51,6 +51,10 @@ public interface ItemListContract {
     void onAddNewData();
 
     Integer getStoredIndex();
+
+    Integer getStoredNumOfClicks();
+
+    ItemData getStoredLetra();
   }
 
   interface Router {

@@ -21,6 +21,7 @@ public class ItemListModel implements ItemListContract.Model {
   private Integer clicks;
 
   public ItemListModel() {
+    clicks = 0;
     dataIndex = 0;
     dataSource = new ArrayList();
   }
@@ -35,6 +36,18 @@ public class ItemListModel implements ItemListContract.Model {
   @Override
   public Integer getStoredIndex() {
     return dataIndex;
+  }
+
+  @Override
+  public Integer getStoredNumOfClicks() {
+    int clicks = this.clicks;
+    this.clicks = 0;
+    return clicks;
+  }
+
+  @Override
+  public ItemData getStoredLetra() {
+    return itemData;
   }
 
   @Override

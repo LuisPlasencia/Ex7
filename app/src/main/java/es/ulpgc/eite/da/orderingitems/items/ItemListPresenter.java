@@ -7,6 +7,7 @@ import java.lang.ref.WeakReference;
 import es.ulpgc.eite.da.orderingitems.app.DetailToListState;
 import es.ulpgc.eite.da.orderingitems.app.ListToDetailState;
 import es.ulpgc.eite.da.orderingitems.data.ItemData;
+import java.util.Collections;
 
 public class ItemListPresenter implements ItemListContract.Presenter {
 
@@ -50,7 +51,16 @@ public class ItemListPresenter implements ItemListContract.Presenter {
 
     state.dataIndex = model.getStoredIndex();
     state.dataSource = model.getStoredDataSource();
+    state.numOfClicks = model.getStoredNumOfClicks();
+    state.letraClickada = model.getStoredLetra();
     Log.d("hola", String.valueOf(state.dataIndex));
+
+    if(state.numOfClicks != 0) {
+      Collections.rotate(state.dataSource, state.numOfClicks);
+      for (int i = 0; i < state.dataSource.size(); i++) {
+        state.dataSource.get(i).position = i;
+      }
+    }
 
 
     view.get().onDataUpdated(state);
@@ -76,6 +86,7 @@ public class ItemListPresenter implements ItemListContract.Presenter {
   public void onListTapped(ItemData data) {
     // Log.e(TAG, "onListTapped()");
     ListToDetailState listToDetailState = new ListToDetailState();
+    state.letraClickada = data;
     listToDetailState.letra = data;
     listToDetailState.listSize = state.dataIndex;
     router.passStateToNextScreen(listToDetailState);
