@@ -11,6 +11,9 @@ public class AppMediator {
   private ItemDetailState itemDetailState;
   private ItemListState itemListState;
 
+  private ListToDetailState listToDetailState;
+  private DetailToListState detailToListState;
+
 
   private AppMediator() {
     itemDetailState= new ItemDetailState();
@@ -37,6 +40,26 @@ public class AppMediator {
 
   public ItemListState getItemListState() {
     return itemListState;
+  }
+
+  public void setNextListScreenState(ListToDetailState state) {
+    listToDetailState=state;
+  }
+
+  public ListToDetailState getPreviousNumberListScreenState() {
+    ListToDetailState state= listToDetailState;
+    listToDetailState = null;
+    return state;
+  }
+
+  public void setPreviousListScreenState(DetailToListState state) {
+    detailToListState=state;
+  }
+
+  public DetailToListState getNextLetterListScreenState() {
+    DetailToListState state = detailToListState;
+    detailToListState = null;
+    return state;
   }
 
 }
