@@ -1,5 +1,7 @@
 package es.ulpgc.eite.da.orderingitems.items;
 
+import android.util.Log;
+
 import java.lang.ref.WeakReference;
 
 import es.ulpgc.eite.da.orderingitems.app.DetailToListState;
@@ -48,6 +50,7 @@ public class ItemListPresenter implements ItemListContract.Presenter {
 
     state.dataIndex = model.getStoredIndex();
     state.dataSource = model.getStoredDataSource();
+    Log.d("hola", String.valueOf(state.dataIndex));
 
 
     view.get().onDataUpdated(state);

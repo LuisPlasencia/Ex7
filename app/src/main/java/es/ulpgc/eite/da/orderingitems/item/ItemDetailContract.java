@@ -46,6 +46,8 @@ public interface ItemDetailContract {
     void onDataFromPreviousScreen(ItemData data, Integer size);
 
     void onIncrPosition();
+
+      Integer getStoredListSize();
   }
 
   interface Router {

@@ -73,7 +73,7 @@ public class ItemDetailActivity
     Log.e(TAG, "onDataUpdated()");
 
     ItemData data = viewModel.data;
-    String position = String.valueOf(data.position + 1);
+    String position = String.valueOf(data.position +1);
 
     Log.e(TAG, "data: " + data);
     Log.e(TAG, "position: " + data.position);

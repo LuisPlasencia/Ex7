@@ -20,6 +20,11 @@ public class ItemDetailModel implements ItemDetailContract.Model {
   }
 
   @Override
+  public Integer getStoredListSize() {
+    return listSize;
+  }
+
+  @Override
   public void onRestartScreen(ItemData data, Integer size) {
     // Log.e(TAG, "onRestartScreen()");
 
@@ -40,4 +45,6 @@ public class ItemDetailModel implements ItemDetailContract.Model {
 
     //TODO: falta implementacion
   }
+
+
 }
